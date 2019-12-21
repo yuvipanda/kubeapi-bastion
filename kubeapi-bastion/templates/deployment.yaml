@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kubeapi-bastion.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "kubeapi-bastion.name" . }}
+    helm.sh/chart: {{ include "kubeapi-bastion.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "kubeapi-bastion.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "kubeapi-bastion.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: host-key
+        secret:
+          secretName: {{ include "kubeapi-bastion.fullname" . }}-host-key
+          defaultMode: 256
+      - name: user-keys
+        secret:
+          secretName: {{ include "kubeapi-bastion.fullname" . }}-user-keys
+          defaultMode: 292
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - /usr/sbin/sshd
+            - -D
+            - -e
+            - -h
+            - /etc/ssh/hostkey/ssh_host_key
+          volumeMounts:
+          - name: host-key
+            mountPath: /etc/ssh/hostkey/
+          - name: user-keys
+            mountPath: /etc/ssh/userkeys.orig/
+          ports:
+            - name: ssh
+              containerPort: 48300
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

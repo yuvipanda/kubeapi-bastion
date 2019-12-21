@@ -1,0 +1,50 @@
+# Default values for kubeapi-bastion.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+ssh:
+  userKeys:
+    forwarder: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCsTXgYcM8MYZi6fSy6Ozhop13ffHKsV5QHe8JGmGkrrD9/kst3mopRIqz4Xx6rOsi8XJc3mDsPE5yFYaTLkLLf+Q9yTQnbohPjvaaX1E1BZAt3+dU+hrCuJVD4rsrQGcmL7bSt5YMAQLn55S+q9fRtzIReTlVyry0THHQGplP16jxILYCSe186lml3NF545WND6J1HCM8ZHfvaJnh3W9PklmJaYCoxc5MabQLht9j3ywwq8qkJNnHvrsbgTKJehcK/CpjPSJ6L2s6d9VTkgBCIxz6u29RMF75OZmpXWDPDwqnO+KdkRsSPtKzczpN77Kng/9TUGTP1YXrx0z0YENT yuvipanda@new-beginnings.local
+  hostKey: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn
+    NhAAAAAwEAAQAAAQEAwrE14GHDPDGGYun0sujs4aKdd33xyrFeUB3vCRphpK6w/f5LLd5q
+    KUSKs+F8eqzrIvFyXN5g7DxOchWGky5Cy3/kPck0J26IT472ml9RNQWQLd/nVPoawriVQ+
+    K7K0BnJi+20reWDAEC5+eUvqvX0bcyEXk5Vcq8tExx0BqZT9eo8SC2AkntfOpZpdzReeOV
+    jQ+idRwjPGR372iZ4d1vT5JZiWmAqMXOTGm0C4bfY98sMKvKpCTZx767G4EyiXoXCvwqYz
+    0iei9rOnfVU5IAQiMc+rtvUTBe+TmZqV1gzw8KpzvinZEbEj7Ss3M6Te+yp4P/U1Bkz9WF
+    68dM9GBDUwAAA9gwzv50MM7+dAAAAAdzc2gtcnNhAAABAQDCsTXgYcM8MYZi6fSy6Ozhop
+    13ffHKsV5QHe8JGmGkrrD9/kst3mopRIqz4Xx6rOsi8XJc3mDsPE5yFYaTLkLLf+Q9yTQn
+    bohPjvaaX1E1BZAt3+dU+hrCuJVD4rsrQGcmL7bSt5YMAQLn55S+q9fRtzIReTlVyry0TH
+    HQGplP16jxILYCSe186lml3NF545WND6J1HCM8ZHfvaJnh3W9PklmJaYCoxc5MabQLht9j
+    3ywwq8qkJNnHvrsbgTKJehcK/CpjPSJ6L2s6d9VTkgBCIxz6u29RMF75OZmpXWDPDwqnO+
+    KdkRsSPtKzczpN77Kng/9TUGTP1YXrx0z0YENTAAAAAwEAAQAAAQAv/relZPRYNm1GnR4x
+    rLIYvZnMB0RAD5GMdpSizdocWuRO+Q1XdWj+W2NGDOQ+6bndl1/1/Owv0H4WKbBPQCw/Nn
+    vxr1QoFFuOIVQxoiXGyGROqs/AZxeJwS8q2Q4DD5FeHI0ZTSC0PNuWh8RnbL17eYniPNwh
+    hiUW3XGBN81rnPQNHjrA4x91T6D5eO+W1g8C0nXiVkK0v6zg+xJw5SqY8qyAjTxmq5pYpz
+    GkC+TeVmMjFHOhae3E9NHCgdCnRoeL422fzHWSqZEvDXvgsiX7rzJ6xo/niLGKV7bzSNeX
+    VKeP/nE8vQVA9ck6UktvpIBOS/+6WE+mI+CqTZG5L6ehAAAAgQDmbt/7oONJYnDCHmpr7p
+    /J9GPi7V2J/VzrPbk2dBOtpJUSuo11t35gb4fl20cyR91G6urmPaAaPh6tpEMNuJP82/Ci
+    3UViREoGRoBPlDubZvrlon72VI3WhL7DZh4CtbA/RM7BkSvgNwY/XFNiLU7JCvuarA4LKk
+    qVvVrETVBgDQAAAIEA88r2+v04CtaUBr5+qOBMWnI/E5o3zFz959iYd5kPAQ6CwBKQom2x
+    yzoszIBfADyAM3B85FwlLBqgQI1te164NkCkXbGAoVQoYSgfU5aHNNa5o/eUEVb2bF5hyP
+    6Semihfbh6Bx3GXnY4JUVj2beGYC4AdM528Ll+AwT8bXZMBoUAAACBAMxw2rH4XR1FcMgE
+    LSXAWrwzMYV2PS82EcuYLTAaKdXp4/g7jrIuh0msvSdBKiOSLnYIoqfSBSRoj+O3aKkkbp
+    zetHCtA1gHDBzCcS3pscOH+oUWR1UiVnPbJ+jU4awFxDYWyG3874e3rQVGlKRP7n0WIEC0
+    gxh2Hpz6+dazveX3AAAAHnl1dmlwYW5kYUBuZXctYmVnaW5uaW5ncy5sb2NhbAECAwQ=
+    -----END OPENSSH PRIVATE KEY-----
+replicaCount: 1
+
+image:
+  repository: yuvipanda/kubeapi-bastion
+  tag: v1
+  pullPolicy: IfNotPresent
+
+
+service:
+  type: LoadBalancer
+  port: 48300
+
+
+resources: {}

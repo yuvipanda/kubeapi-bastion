@@ -1,0 +1,18 @@
+# Minimal SSHD config that only lets us port-forward
+
+# Weird port to ward off naive port knockers
+Port 48300
+
+# Only allow ssh keys to enter
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+HostBasedAuthentication no
+PubkeyAuthentication yes
+
+# No X11 Forwarding
+X11Forwarding no
+
+# Debug log for now
+LogLevel DEBUG
+
+AuthorizedKeysFile /etc/ssh/userkeys/%u
